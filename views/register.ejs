@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('nav.ejs') %>
+
+    <h1>Register a new account</h1>
+    <form action="/register" method="POST">
+      <div>
+        <label for="fullname">fullname</label>
+        <input id="fullname" name="fullname" type="text" />
+      </div>
+      <div>
+        <label for="email">email</label>
+        <input id="email" name="email" type="email" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+      </div>
+      <button>Register</button>
+    </form>
+  </body>
+</html>
