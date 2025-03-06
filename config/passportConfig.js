@@ -1,4 +1,5 @@
 import passport from "passport";
+import bcrypt from "bcrypt";
 import { Strategy as LocalStrategy } from "passport-local";
 
 import {
@@ -9,12 +10,11 @@ import {
 
 async function authenticateUser(email, password, done) {
   const user = await getUserByEmail(email);
-  const isEmailCorrect = user ? true : false;
-  const isPassworCorrect = (await getUserByPassword(password)) ? true : false;
+  const passwordMatch = await bcrypt.compare(password, user.password);
 
-  if (!isEmailCorrect) {
+  if (!user) {
     return done(null, false, { message: "No user with that email" });
-  } else if (!isPassworCorrect) {
+  } else if (!passwordMatch) {
     return done(null, false, { message: "Password incorrect" });
   }
 
