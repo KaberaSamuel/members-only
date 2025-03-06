@@ -6,8 +6,8 @@ function getRegisterReqs(req, res) {
 
 async function postRegisterReqs(req, res, next) {
   try {
-    const { fullname, email, password } = req.body;
-    await insertIntoUsers(fullname, email, password);
+    const { firstname, lastname, email, password } = req.body;
+    await insertIntoUsers(firstname, lastname, email, password);
     res.redirect("/");
   } catch (err) {
     return next(err);

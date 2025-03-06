@@ -1,6 +1,6 @@
 async function handleHomeReqs(req, res) {
   res.render("index", {
-    name: "Kabera Samuel",
+    name: req.user.firstname,
   });
 }
 
