@@ -3,41 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🗝 Members Only</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../public/styles/general.css" />
+    <link rel="stylesheet" href="../public/styles/login.css" />
+
+    <script src="../public/script/formFunctionalities.js" defer></script>
   </head>
   <body>
     <%- include('nav.ejs') %>
-    <h1>Welcome to Login page</h1>
 
-    <form action="/login" method="post">
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required />
+    <main>
+      <div class="login">
+        <% if (messages.error) { %>
+        <h1><%= messages.error %></h1>
+        <% } else { %>
+        <h1>Welcome Back!</h1>
+        <% } %>
+
+        <form action="/login" method="post">
+          <div>
+            <label for="email">Username</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+
+          <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
+          </div>
+
+          <div>
+            <input type="checkbox" id="checkbox" />
+            <label for="checkbox">Show Password</label>
+          </div>
+          <button type="submit">Login</button>
+        </form>
       </div>
+    </main>
 
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required />
-      </div>
-
-      <div>
-        <input type="checkbox" id="checkbox" />
-        <label for="checkbox">Show Password</label>
-      </div>
-      <button type="submit">Login</button>
-    </form>
-
-    <script>
-      const passwordInput = document.querySelector("#password");
-      const checkboxInput = document.querySelector("#checkbox");
-
-      checkboxInput.addEventListener("click", () => {
-        if (checkboxInput.checked) {
-          passwordInput.type = "text";
-        } else {
-          passwordInput.type = "password";
-        }
-      });
-    </script>
+    <footer>
+      Kabera Nshuti Samuel &copy; 2025
+      <a target="_blank" href="https://github.com/KaberaSamuel/members-only"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </footer>
   </body>
 </html>

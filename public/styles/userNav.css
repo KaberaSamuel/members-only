@@ -1,0 +1,49 @@
+nav > :nth-child(2) {
+  font-size: var(--lfs);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+}
+
+nav > :nth-child(2) a {
+  all: unset;
+}
+
+.dialog {
+  display: none;
+}
+
+.dialog.visible {
+  position: absolute;
+  font-size: var(--lfs);
+  right: 0;
+  top: 45px;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border: 1px solid var(--lightblue);
+  background-color: var(--darkgray);
+  border-radius: 10px;
+}
+
+.dialog a {
+  padding: 15px 35px !important;
+  border: 1px solid white;
+}
+
+.dialog :first-child {
+  border-bottom: 1px solid var(--lightblue);
+}
+
+.dialog :last-child {
+  color: rgb(255, 71, 71);
+}
+
+nav .image {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+}

@@ -1,6 +1,7 @@
 import path from "node:path";
 import express from "express";
 import session from "express-session";
+import flash from "express-flash";
 
 import homeRouter from "./routes/homeRoute.js";
 import loginRouter from "./routes/loginRoute.js";
@@ -14,7 +15,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join("./", "views"));
 
-app.use("/public", express.static("./" + "public"));
+app.use("/public", express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
@@ -26,6 +27,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use("/(dashboard)?", homeRouter);
 app.use("/register", registerRouter);

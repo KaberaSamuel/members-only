@@ -7,15 +7,22 @@ async function createTableUsers() {
             firstname VARCHAR(255),
             lastname VARCHAR(255),
             email VARCHAR (255),
-            password VARCHAR (255)
+            password VARCHAR (255),
+            profileImage VARCHAR (255)
         );
     `);
 }
 
-async function insertIntoUsers(firstname, lastname, email, password) {
+async function insertIntoUsers(
+  firstname,
+  lastname,
+  email,
+  password,
+  profileImage
+) {
   await pool.query(
-    "INSERT INTO users (firstname, lastname, email,password)VALUES ($1, $2, $3, $4)",
-    [firstname, lastname, email, password]
+    "INSERT INTO users (firstname, lastname, email,password, profileimage)VALUES ($1, $2, $3, $4, $5)",
+    [firstname, lastname, email, password, profileImage]
   );
 }
 

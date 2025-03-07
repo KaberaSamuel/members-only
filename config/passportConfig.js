@@ -10,16 +10,16 @@ import {
 
 async function authenticateUser(email, password, done) {
   const user = await getUserByEmail(email);
-  const passwordMatch = await bcrypt.compare(password, user.password);
 
-  if (!user) {
-    return done(null, false, { message: "No user with that email" });
-  } else if (!passwordMatch) {
-    return done(null, false, { message: "Password incorrect" });
+  if (user) {
+    if (await bcrypt.compare(password, user.password)) {
+      return done(null, user);
+    } else {
+      return done(null, false, { message: "Password incorrect" });
+    }
+  } else {
+    return done(null, false, { message: "User email incorrect" });
   }
-
-  // returning userObject for serialization
-  return done(null, user);
 }
 
 function checkAuthenticated(req, res, next) {
