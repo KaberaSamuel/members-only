@@ -1,7 +1,13 @@
-async function handleHomeReqs(req, res) {
+function handleHomeReqs(req, res) {
   res.render("index", {
-    name: req.user.firstname,
+    user: req.user,
   });
 }
 
-export { handleHomeReqs };
+function newPostGetReqs(req, res) {
+  res.render("newPost.ejs", {
+    user: req.user,
+  });
+}
+
+export { handleHomeReqs, newPostGetReqs };

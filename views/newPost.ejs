@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🗝 Members Only</title>
     <link
       rel="stylesheet"
@@ -11,7 +10,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
     <link rel="stylesheet" href="../public/styles/general.css" />
     <link rel="stylesheet" href="../public/styles/userNav.css" />
 
@@ -21,7 +19,21 @@
     <%- include('homeNav.ejs', user) %>
 
     <main>
-      <h1>Welcome To the Homepage <%= user.firstname %></h1>
+      <div class="new-post">
+        <form action="/dashboard/new-post" method="POST">
+          <div>
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" required />
+          </div>
+
+          <div>
+            <label for="content">Content</label>
+            <textarea name="content" id="content" required></textarea>
+          </div>
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </main>
 
     <footer>

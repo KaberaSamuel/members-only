@@ -1,0 +1,21 @@
+<nav>
+  <div>
+    <i class="fa-solid fa-lock"></i><a href="/dashboard">Members Only</a>
+  </div>
+
+  <div>
+    <div class="image">
+      <img
+        src="../public/uploads/<%=user.profileimage%>"
+        alt="profile-picture"
+      />
+    </div>
+    <p><%= user.email %></p>
+    <i class="fa-solid fa-angle-down drop-down"></i>
+    <div class="dialog">
+      <a href="/dashboard/new-post">New post</a>
+      <a href="#">All users</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>

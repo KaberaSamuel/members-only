@@ -7,9 +7,17 @@ function getRegisterReqs(req, res) {
 
 async function postRegisterReqs(req, res, next) {
   try {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email } = req.body;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    await insertIntoUsers(firstname, lastname, email, hashedPassword);
+
+    const profileImage = req.file.filename;
+    await insertIntoUsers(
+      firstname,
+      lastname,
+      email,
+      hashedPassword,
+      profileImage
+    );
     res.redirect("/");
   } catch (err) {
     return next(err);

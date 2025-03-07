@@ -2,53 +2,75 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>🗝 Members Only</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../public/styles/general.css" />
+    <script src="../public/script/formFunctionalities.js" defer></script>
   </head>
   <body>
     <%- include('nav.ejs') %>
 
-    <h1>Register a new account</h1>
-    <form action="/register" method="POST">
-      <div>
-        <div>
-          <label for="firstname">First Name:</label>
-          <input id="firstname" name="firstname" type="text" required />
-        </div>
+    <main>
+      <div class="register">
+        <h1>Register a new account</h1>
 
-        <div>
-          <label for="last name">Last Name:</label>
-          <input id="last name" name="lastname" type="text" required />
-        </div>
+        <form action="/register" method="POST" enctype="multipart/form-data">
+          <div>
+            <label for="firstname">First Name:</label>
+            <input id="firstname" name="firstname" type="text" required />
+          </div>
+
+          <div>
+            <label for="lastname">Last Name:</label>
+            <input id="lastname" name="lastname" type="text" required />
+          </div>
+
+          <div>
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <div>
+            <label for="profileImage">Profile Picture:</label>
+            <input
+              id="profileImage"
+              name="profileImage"
+              type="file"
+              accept="image/jpeg,image/png"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="password">Password:</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              minlength="5"
+            />
+          </div>
+
+          <div>
+            <input type="checkbox" id="checkbox" />
+            <label for="checkbox">Show Password</label>
+          </div>
+          <button type="submit">Register</button>
+        </form>
       </div>
+    </main>
 
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" name="email" type="email" required />
-      </div>
-
-      <div>
-        <label for="password">Password:</label>
-        <input id="password" name="password" type="password" minlength="5" />
-      </div>
-
-      <div>
-        <input type="checkbox" id="checkbox" />
-        <label for="checkbox">Show Password</label>
-      </div>
-      <button type="submit">Register</button>
-    </form>
-
-    <script>
-      const passwordInput = document.querySelector("#password");
-      const checkboxInput = document.querySelector("#checkbox");
-
-      checkboxInput.addEventListener("click", () => {
-        if (checkboxInput.checked) {
-          passwordInput.type = "text";
-        } else {
-          passwordInput.type = "password";
-        }
-      });
-    </script>
+    <footer>
+      Kabera Nshuti Samuel &copy; 2025
+      <a target="_blank" href="https://github.com/KaberaSamuel/members-only"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </footer>
   </body>
 </html>
