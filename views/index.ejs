@@ -20,8 +20,13 @@
   <body>
     <%- include('homeNav.ejs', user) %>
 
-    <main>
+    <main class="posts">
+      <% if (posts.length > 0) { %> <% posts.forEach(post => { %>
+      <p><%=post.content%></p>
+      <%})%> <% } else { %>
+      <!-- Code to be executed if the condition is false -->
       <h1>Welcome To the Homepage <%= user.firstname %></h1>
+      <% } %>
     </main>
 
     <footer>
