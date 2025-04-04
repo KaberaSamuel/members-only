@@ -18,6 +18,7 @@ async function createTablePosts() {
         CREATE TABLE posts (
             postId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
             userid VARCHAR(255),
+            username VARCHAR(255),
             time VARCHAR(255),
             title VARCHAR (255),
             content VARCHAR (255),
@@ -39,10 +40,10 @@ async function insertIntoUsers(
   );
 }
 
-async function insertIntoPosts(userid, time, title, content, image) {
+async function insertIntoPosts(userid, username, time, title, content, image) {
   await pool.query(
-    "INSERT INTO posts (userID, time, title,content, image)VALUES ($1, $2, $3, $4, $5)",
-    [userid, time, title, content, image]
+    "INSERT INTO posts (userID, username, time, title,content, image)VALUES ($1, $2, $3, $4, $5, $6)",
+    [userid, username, time, title, content, image]
   );
 }
 
@@ -73,6 +74,12 @@ async function getPosts() {
   return rows;
 }
 
+async function getPostById(id) {
+  const { rows } = await pool.query(`SELECT * FROM posts WHERE id='${id}';`);
+
+  return rows[0];
+}
+
 // createTablePosts();
 
 export {
@@ -82,4 +89,5 @@ export {
   getUserByEmail,
   getUserById,
   getPosts,
+  getPostById,
 };
