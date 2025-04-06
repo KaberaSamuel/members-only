@@ -1,4 +1,9 @@
-import { insertIntoPosts, getPosts } from "../db/queries.js";
+import {
+  insertIntoPosts,
+  isMember,
+  insertIntoMembers,
+  getPosts,
+} from "../db/queries.js";
 
 function formatTimeLabel(timeLabel) {
   const timeComponents = timeLabel.split(" ");
@@ -13,7 +18,7 @@ function formatTimeLabel(timeLabel) {
   return timeComponents.join(" ");
 }
 
-async function trackPostsTime(posts) {
+async function trackPostsTime(posts, isMember = false) {
   const postsTimeTracker = {};
 
   posts.forEach((post) => {
@@ -50,10 +55,12 @@ async function trackPostsTime(posts) {
 async function handleHomeReqs(req, res) {
   const posts = await getPosts();
   const postsTimeTracker = await trackPostsTime(posts);
+  await insertIntoMembers("Kabera", "Samuel", "kaberanshutisamuel@gmail.com");
 
   res.render("index", {
     user: req.user,
     posts: posts,
+    isMember: await isMember(req.user.email),
     postsTimeTracker: postsTimeTracker,
   });
 }

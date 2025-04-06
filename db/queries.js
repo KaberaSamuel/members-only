@@ -27,6 +27,17 @@ async function createTablePosts() {
     `);
 }
 
+async function createTableMembers() {
+  await pool.query(`
+    CREATE TABLE members (
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        firstname VARCHAR(255),
+        lastname VARCHAR(255),
+        email VARCHAR (255)
+    );
+`);
+}
+
 async function insertIntoUsers(
   firstname,
   lastname,
@@ -45,6 +56,25 @@ async function insertIntoPosts(userid, username, time, title, content, image) {
     "INSERT INTO posts (userID, username, time, title,content, image)VALUES ($1, $2, $3, $4, $5, $6)",
     [userid, username, time, title, content, image]
   );
+}
+
+async function insertIntoMembers(firstname, lastname, email) {
+  await pool.query(
+    "INSERT INTO members (firstname, lastname, email) VALUES ($1, $2, $3)",
+    [firstname, lastname, email]
+  );
+}
+
+async function isMember(userEmail) {
+  const { rows } = await pool.query(
+    `SELECT * FROM members WHERE email='${userEmail}';`
+  );
+
+  if (rows.length > 0) {
+    return true;
+  }
+
+  return false;
 }
 
 async function getUserByEmail(email) {
@@ -80,11 +110,11 @@ async function getPostById(id) {
   return rows[0];
 }
 
-// createTablePosts();
-
 export {
   insertIntoUsers,
   insertIntoPosts,
+  insertIntoMembers,
+  isMember,
   getUserByPassword,
   getUserByEmail,
   getUserById,

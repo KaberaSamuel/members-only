@@ -8,20 +8,50 @@
 main {
   width: 60vw;
   margin: 0 auto;
+}
+
+.join-members {
+  width: 100%;
+  margin: 20px;
+  padding: 30px;
+  background-color: rgb(83, 83, 165);
+  text-align: center;
+  border-radius: 15px;
+}
+
+.join-members a {
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.posts {
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
   gap: 20px;
+  width: 100%;
 }
 
 .post {
   width: 100%;
   padding: 20px 15px;
   border: 1px solid rgb(56, 56, 56);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   border-radius: 15px;
 }
 
 .post .profile {
   display: flex;
   gap: 10px;
+  font-weight: 650;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.post .profile .time {
+  font-weight: normal;
+  font-size: var(--fs);
+  text-transform: lowercase;
 }

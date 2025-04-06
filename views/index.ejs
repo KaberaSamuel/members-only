@@ -22,24 +22,36 @@
     <%- include('homeNav.ejs', user) %>
 
     <main>
-      <% if (posts.length > 0) { %> <% posts.forEach(post => { %>
-      <div class="post">
-        <div class="profile">
-          <div class="image">
-            <img src="../public/uploads/<%=post.image%>" />
-          </div>
-          <div>
-            <p><%=post.username%></p>
-            <p class="time"><%=postsTimeTracker[post.postid]%></p>
-          </div>
-        </div>
-        <h2><%=post.title%></h2>
-        <p><%=post.content%></p>
+      <% if (!isMember) { %>
+      <div class="join-members">
+        To see usernames, you need to <a href="#">join our membership</a> first.
       </div>
-      <%})%> <% } else { %>
-      <!-- Code to be executed if the condition is false -->
-      <h1>Welcome To the Homepage <%= user.firstname %></h1>
       <% } %>
+
+      <div class="posts">
+        <% if (posts.length > 0) { %> <% posts.forEach(post => { %>
+        <div class="post">
+          <div class="profile">
+            <div class="image">
+              <img src="../public/uploads/<%=post.image%>" />
+            </div>
+            <div>
+              <% if (isMember) { %>
+              <p><%= post.username %></p>
+              <% } else { %>
+              <p>@********</p>
+              <% } %>
+              <p class="time"><%=postsTimeTracker[post.postid]%></p>
+            </div>
+          </div>
+          <h2><%=post.title%></h2>
+          <p><%=post.content%></p>
+        </div>
+        <%})%> <% } else { %>
+        <!-- Code to be executed if the condition is false -->
+        <h1>Welcome To the Homepage <%= user.firstname %></h1>
+        <% } %>
+      </div>
     </main>
 
     <footer>
